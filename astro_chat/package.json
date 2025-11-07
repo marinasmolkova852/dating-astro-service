@@ -1,0 +1,15 @@
+{
+  "name": "astro-chat-service",
+  "version": "1.0.0",
+  "description": "Микросервис для взаимодействия puter.js + express с python aiogram",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "@heyputer/puter.js": "^2.0.15"
+  },
+  "type": "module"
+}
