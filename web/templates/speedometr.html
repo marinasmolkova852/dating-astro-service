@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="=ie=edge">
+        <title>Astro Love</title>
+        <link rel="stylesheet" href="/static/css/start_speed.css">
+        <link rel="stylesheet" href="/static/css/scroll_modal.css">
+        <link rel="stylesheet" href="/static/css/footer.css">
+    </head>
+    <body>
+	    <div class="speedometr">
+    	    <div class="anim-container">
+            	<div class="slideshow-container-card">
+        		    <div class="slideshow-container-card" style="height: 200px; position:relative;">
+            		    <img class="heart" src="/static/img/icon_heart_speedometr_new.png" />
+            		    <div class="arrow" style="width: 45px;left:150px;position: relative; bottom:15px;transform: rotate(-90deg); transform-origin: bottom;">
+            		        <img src="/static/img/speedomet_arrowr.png" style="width: 40px;margin:auto;"/>
+            		    </div>
+                    </div>
+    		    </div>
+    		</div>
+            <p style="margin-bottom:40px;"></p>
+    	    <span class="headline">Спидометр совместимости</span>
+            <a class="question">?</a>
+    	    
+            <div class="partners-container">
+                <div class="partner-block">
+                    <p>Первый партнер</p>
+                    <input class="scroll-date" id="birth_date_one" placeholder="Дата рождения" readonly required />
+                </div>
+                <div class="partner-block">
+                    <p>Второй партнер</p>
+                    <input class="scroll-date" id="birth_date_two" placeholder="Дата рождения" readonly required />
+                </div>
+            </div>
+            
+            <button class="btn-count" id="count">Рассчитать совместимость</button>
+		</div>
+		<div class="tooltip-overlay" id="tooltip">
+            <div class="tooltip-box">
+                <div class="close-tooltip" onclick="hide_window()" aria-label="Закрыть" role="button" tabindex="0">&times;</div>
+                <div id="tooltip-content" style="margin: 15px 5px"></div>
+            </div>
+        </div>
+        <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <div class="modal">
+                <div class="picker">
+                    <div class="wheel" id="day"></div>
+                    <div class="wheel" id="month"></div>
+                    <div class="wheel" id="year"></div>
+                    <div class="wheel-overlay"></div>
+                </div>
+                <div class="buttons">
+                    <button class="cancel-btn" id="cancel">Отмена</button>
+                    <button class="ok-btn" id="ok">Выбрать</button>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="footer-container">
+                <div id="profile" class="footer-item"><img src="/static/img/icon_profile.png" alt="Профиль" /></div>
+                <div id="love_in_me" class="footer-item"><img src="/static/img/icon_love.png" alt="Любовь" /></div>
+                <div id="match" class="footer-item"><img src="/static/img/icon_match.png" alt="Мэтчи" /></div>
+                <div id="speedometr" class="footer-item"><div class="footer-active"><img src="/static/img/icon_speedometr.png" alt="Спидометр" /><span>Спидометр</span></div></div>
+                <div id="payment" class="footer-item"><img src="/static/img/icon_tarif.png" alt="Тарифы" /></div>
+            </div>
+        </footer>
+        <script>
+            document.querySelectorAll('a.question').forEach(link => {
+                link.addEventListener('click', function (e) {
+                      e.preventDefault();
+                      const content = "Представьте, что совместимость — это стартовая точка в ваших отношениях. У кого-то она может быть на отметке 30%, у кого-то — на 80%. Главная задача — это пройти путь до 100%, но важно понимать: кто-то способен построить по-настоящему крепкий союз с 30%, а кто-то не сдвинется с места даже при 60%. И в этом нет ничего страшного. Совместимость просто показывает примерный прогноз, сильные и слабые места, а решение как двигаться и действовать всегда остается за вами!";
+                      document.getElementById("tooltip-content").innerHTML = content;
+                      document.getElementById("tooltip").style.display = 'block';
+                });
+            });
+        
+            function hide_window() {
+                document.getElementById("tooltip").style.display = 'none';
+            }
+          
+        </script>
+        <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+        <script src="/static/js/menu_control.js?v=1.0.1"></script>
+        <script src="/static/js/scroll_modal.js?v=1.0.1"></script>
+        <script src="/static/js/speed_control.js"></script>
+    </body>
+</html>

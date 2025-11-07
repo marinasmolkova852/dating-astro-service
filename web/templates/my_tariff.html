@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="=ie=edge">
+  <title>Astro Love</title>
+  <link rel="stylesheet" href="/static/css/footer.css" />
+  <link rel="stylesheet" href="/static/css/my_tariff.css" />
+</head>
+<body>
+  <div class="container">
+    <div style="text-align: left;"><img src="/static/img/marker_back.png" style="width:7%;" onclick="window.location.href='/profile'"/></div>
+    <img src="/static/img/coshel_neon.png" style="display: block;margin: 0 auto" width="200px" alt="Кошелёк" />
+    <h2 class="page-title">Мой тариф</h2>
+
+    <!-- Блок тарифа -->
+    <div class="section">
+      <div class="tariff-header">
+        <div class="tariff-name">Тариф {{ tariff }}</div>
+        <button id="change-tariff" class="change-tariff-btn" type="button" onclick="window.location.href='/tariffs'">Изменить тариф</button>
+      </div>
+      <div class="balance-header">Баланс</div>
+      <!-- Горизонтальные блоки -->
+      {% if tariff == "VIP" or tariff == "SUPER VIP" or tariff == "КРУЧУ ВЕРЧУ" %}
+        <div class="balance-section">
+            <div class="balance-card">
+              <div class="balance-title">Мэтчи</div>
+              <div class="balance-value">
+                ∞
+                <img src="/static/img/match_balance.png" alt="Мэтчи" class="balance-icon" />
+              </div>
+            </div>
+    
+            <div class="balance-card">
+              <div class="balance-title">Любовь</div>
+              <div class="balance-value">
+                ∞
+                <img src="/static/img/match_love.png" alt="Любовь" class="balance-icon" />
+              </div>
+            </div>
+    
+            <div class="balance-card">
+              <div class="balance-title">Спидометр</div>
+              <div class="balance-value">
+                ∞
+                <img src="/static/img/match_speed.png" alt="Спидометр" class="balance-icon" />
+              </div>
+            </div>
+          </div>
+      {% else %}
+          <div class="balance-section">
+            <div class="balance-card">
+              <div class="balance-title">Мэтчи</div>
+              <div class="balance-value">
+                {{ amount_matches }}
+                <img src="/static/img/match_balance.png" alt="Мэтчи" class="balance-icon" />
+              </div>
+            </div>
+    
+            <div class="balance-card">
+              <div class="balance-title">Любовь</div>
+              <div class="balance-value">
+                {{ amount_love }}
+                <img src="/static/img/match_love.png" alt="Любовь" class="balance-icon" />
+              </div>
+            </div>
+    
+            <div class="balance-card">
+              <div class="balance-title">Спидометр</div>
+              <div class="balance-value">
+                {{ amount_speed }}
+                <img src="/static/img/match_speed.png" alt="Спидометр" class="balance-icon" />
+              </div>
+            </div>
+          </div>
+      {% endif %}
+      
+      {% if duration %}
+        <div class="expires">Срок действия: {{ duration }}</div>
+      {% endif %} 
+    </div>
+    {% if tariff_desc %}
+        <!-- Блок "Что включено в тариф" -->
+        <div class="included-section">
+          <h3>Что включено в тариф</h3>
+          <ul class="included-list">
+            {% for line in tariff_desc %}
+                <li>{{ line }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+    {% endif %}
+    
+    <!-- Блок истории операций -->
+    <details>
+      <summary>История операций</summary>
+      <div>
+        <div class="history-entry">Скоро будет доступно</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Футер -->
+    <footer>
+        <div class="footer-container">
+            <div id="profile" class="footer-item" style="margin-left:8px"><div class="footer-active"><img src="/static/img/icon_profile.png" alt="Профиль" /><span>Профиль</span></div></div>
+            <div id="love_in_me" class="footer-item"><img src="/static/img/icon_love.png" alt="Любовь" /></div>
+            <div id="match" class="footer-item"><img src="/static/img/icon_match.png" alt="Мэтчи" /></div>
+            <div id="speedometr" class="footer-item"><img src="/static/img/icon_speedometr.png" alt="Спидометр" /></div>
+            <div id="payment" class="footer-item"><img src="/static/img/icon_tarif.png" alt="Тарифы" /></div>
+        </div>
+    </footer>
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+    <script src="/static/js/menu_control.js?v=1.0.1"></script>
+</body>
+</html>

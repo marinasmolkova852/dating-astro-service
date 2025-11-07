@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="=ie=edge">
+    <title>Astro Love</title>
+    <link rel="stylesheet" href="/static/css/speed.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
+</head>
+<body>
+    <div id="sovmest_info">
+        <span class="title">Общая совместимость</span>
+        <a href="#gen_compatibility" class="question">?</a>
+    
+        <div class="signs-container" style="margin-top: 15px;">
+          <div class="sign"><img src="/static/img/signs/{{ data.sign_one_path }}" style="width:90px;"></div>
+          <div class="center-score">{{ data.total }}</div>
+          <div class="sign"><img src="/static/img/signs/{{ data.sign_two_path }}" style="width:90px;"></div>
+        </div>
+    
+        <div class="sign-info-container">
+          <div class="sign-info">
+            <strong>{{ data.sign_one }} <a href="#sign_one" class="question">?</a></strong>
+            <p>Активность:<br>{{ data.active_one | lower }} <a href="#active_one" class="question">?</a></p>
+            <p>Элемент:<br>{{ data.element_one | lower }} <a href="#element_one" class="question">?</a></p>
+          </div>
+          <div class="sign-info">
+            <strong>{{ data.sign_two }} <a href="#sign_two" class="question" >?</a></strong>
+            <p>Активность:<br>{{ data.active_two | lower }} <a href="#active_two" class="question">?</a></p>
+            <p>Элемент:<br>{{ data.element_two | lower }} <a href="#element_two" class="question">?</a></p>
+          </div>
+        </div>
+    
+        <div class="relation-type">
+          Тип отношений:<br>{{ data.relation_type }} <a href="#relation_type" class="question">?</a>
+        </div>
+    
+        <div class="score-circles" style="margin: 20px 0;">
+          <div class="circle-wrapper"><div class="circle">{{ data.love }}</div><div class="label">Любовь</div></div>
+          <div class="circle-wrapper"><div class="circle">{{ data.conflict }}</div><div class="label">Конфликтность</div></div>
+          <div class="circle-wrapper"><div class="circle">{{ data.sex }}</div><div class="label">Секс</div></div>
+          <div class="circle-wrapper" style="margin-right: 20px;"><div class="circle">{{ data.children }}</div><div class="label">Дети</div></div>
+          <div class="circle-wrapper"><div class="circle">{{ data.family }}</div><div class="label">Семья</div></div>
+        </div>
+    
+        <details>
+            <summary>Общая совместимость</summary>
+            <div>{{ description.total | replace('\n', '<br>') | safe }}</div>
+        </details>
+        <details>
+            <summary>Любовь</summary>
+            <div>{{ description.love | replace('\n', '<br>') | safe }}</div>
+        </details>
+        <details>
+            <summary>Конфликтность</summary>
+            <div>{{ description.conflict | replace('\n', '<br>') | safe }}</div>
+        </details>
+        <details>
+            <summary>Секс</summary>
+            <div>{{ description.sex | replace('\n', '<br>') | safe }}</div>
+        </details>
+        <details>
+            <summary>Дети</summary>
+            <div>{{ description.children | replace('\n', '<br>') | safe }}</div>
+        </details>
+        <details>
+            <summary>Семья</summary>
+            <div>{{ description.family | replace('\n', '<br>') | safe }}</div>
+        </details>
+    
+        <button class="btn-calc" onclick="window.location.href='/speed'">Рассчитать снова</button>
+    </div>
+    <!-- Всплывающая подсказка -->
+    <div class="tooltip-overlay" id="tooltip">
+        <div class="tooltip-box">
+            <div class="close-tooltip" onclick="hide_window()" aria-label="Закрыть" role="button" tabindex="0">&times;</div>
+            <div id="tooltip-content" style="margin: 15px 5px"></div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <div id="profile" class="footer-item"><img src="/static/img/icon_profile.png" alt="Профиль" /></div>
+            <div id="love_in_me" class="footer-item"><img src="/static/img/icon_love.png" alt="Любовь" /></div>
+            <div id="match" class="footer-item"><img src="/static/img/icon_match.png" alt="Мэтчи" /></div>
+            <div id="speedometr" class="footer-item"><div class="footer-active"><img src="/static/img/icon_speedometr.png" alt="Спидометр" /><span>Спидометр</span></div></div>
+            <div id="payment" class="footer-item"><img src="/static/img/icon_tarif.png" alt="Тарифы" /></div>
+        </div>
+    </footer>
+    <script>
+        const tooltips = {
+            "#gen_compatibility": "Совместимость может отличаться от совместимости в мэтчах. Потому что в мэтчах мы учитываем и анализируем анкеты.",
+            "#sign_one": {{ description.sign_one | replace('\n', '<br>') | tojson }},
+            "#sign_two": {{ description.sign_two | replace('\n', '<br>') | tojson }},
+            "#active_one": {{ description.active_one | replace('\n', '<br>') | tojson }},
+            "#active_two": {{ description.active_two | replace('\n', '<br>') | tojson }},
+            "#element_one": {{ description.element_one | replace('\n', '<br>') | tojson }},
+            "#element_two": {{ description.element_two | replace('\n', '<br>') | tojson }},
+            "#relation_type": {{ description.type | replace('\n', '<br>') | tojson }}
+        };
+    
+      // Все ссылки с классом question
+        document.querySelectorAll('a.question').forEach(link => {
+            link.addEventListener('click', function (e) {
+                  e.preventDefault();
+                  const id = this.getAttribute('href');
+                  const content = tooltips[id] || "Информация отсутствует";
+                  document.getElementById("tooltip-content").innerHTML = content;
+                  document.getElementById("tooltip").style.display = 'block';
+            });
+        });
+    
+        function hide_window() {
+            document.getElementById("tooltip").style.display = 'none';
+        }
+    </script>
+    <script src="/static/js/menu_control.js?v=1.0.1"></script>
+</body>
+</html>

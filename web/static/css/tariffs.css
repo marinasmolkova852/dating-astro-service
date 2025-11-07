@@ -1,0 +1,81 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+body {
+    margin: 0;
+    background: linear-gradient(#001332, #321332);
+    color: #d2ccff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.tariffs-info {
+    max-width: 400px;
+    margin: 0 auto 50px;
+    padding: 15px 10px;
+    text-align: center;
+}
+
+span.title {
+    font-size: 26px;
+    font-weight: 500;
+    color: #d880d1;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+.tariff-card {
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+.tariff-img{
+    width: 10%;
+}
+.tariff-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 24px;
+    color: #d880d1;
+    justify-content: center;
+}
+
+ul {
+    list-style: none;
+    text-align: left;
+    padding: 0;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+ul li {
+    /*margin-bottom: 5px;*/
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.button {
+    width: 120px;
+    font-size: 18px;
+    border: 1px solid #d880d1;
+    border-radius: 22px;
+    padding: 10px 15px;
+    margin: 0 auto;
+    color: #d880d1;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background: linear-gradient(135deg, #8E4094, #D880D1);
+
+    /*transform: scale(1.02); */
+    /* background: #d880d1; */
+    color: #e3ebfb;
+}

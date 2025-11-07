@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+body {
+    margin: 0;
+    background: linear-gradient(#001332, #321332);
+    color: #d2ccff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+}
+#sovmest_info {
+    max-width: 380px;
+    margin: 0 auto 70px;
+    padding: 15px 10px;
+    text-align: center;
+}
+/* Заголовок */
+#sovmest_info > span.title {
+    font-size: 22px;
+    font-weight: 500;
+    color: #d880d1;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+#sovmest_info > span.title + span.question {
+    border: 1px solid #d880d1;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: #d880d1;
+    font-size: 20px;
+    vertical-align: middle;
+    margin-left: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+#sovmest_info > span.title + span.question:hover {
+    background: #d880d1;
+    color: #0e0d2c;
+}
+
+/* Знаки */
+.signs-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.center-score {
+    border: 1px solid #d880d1;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 32px;
+    color: #d880d1;
+    margin: 0 15px;
+    user-select: none;
+}
+
+/* Инфо блоки Лев и Телец */
+.sign-info-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 15px 0 20px;
+}
+.sign-info {
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    width: 140px;
+    padding: 10px 12px;
+    text-align: left;
+    color: #d2ccff;
+    font-size: 14px;
+    line-height: 1.4;
+    position: relative;
+}
+.sign-info strong {
+    color: #d880d1;
+    font-size: 18px;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 6px;
+}
+.question {
+    border: 1px solid #d880d17d;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    padding: 0 4.5px;
+    font-weight: 500;
+    line-height: 18px;
+    color: #d880d17d;
+    text-align: center;
+    vertical-align: top;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+}
+
+.question:hover {
+    background: #d880d1;
+    color: #0e0d2c;
+}
+.sign-info p {
+    margin: 6px 0 4px;
+}
+
+/* Тип отношений */
+.relation-type {
+    margin: 20px 0;
+    margin-bottom: 30px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+/*.relation-type .question {*/
+/*  border: 1px solid #d880d1;*/
+/*  border-radius: 50%;*/
+/*  width: 24px;*/
+/*  height: 24px;*/
+/*  font-size: 17px;*/
+/*  line-height: 24px;*/
+/*  display: inline-block;*/
+/*  color: #d880d1;*/
+/*  text-align: center;*/
+/*  vertical-align: middle;*/
+/*  cursor: pointer;*/
+/*  text-decoration: none;*/
+/*}*/
+
+/* Круги с цифрами */
+.score-circles {
+    max-width: 360px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px 25px;
+}
+
+.circle {
+    /*background: #a657b2;*/
+    background: #d880d1;
+    box-shadow: 0px 0px 10px 2px #ae5ba8;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    /*color: #c280d8;*/
+    color: #331653;
+    font-weight: 650;
+    font-size: 28px;
+    line-height: 60px;
+    user-select: none;
+}
+
+.circle + .label {
+    color: #d2ccff;
+    font-size: 14px;
+    margin: 5px auto 10px;
+    text-align: center;
+    user-select: none;
+}
+/* Для цифр снизу */
+.circle-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Секция с выпадающими деталями */
+details {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 15px;
+    margin: auto;
+    margin-bottom: 10px;
+    width: 90%;
+    color: #d880d1;
+    font-size: 14px;
+    cursor: pointer;
+}
+details summary {
+    font-weight: 600;
+    font-size: 16px;
+    outline: none;
+    list-style: none;
+    position: relative;
+    cursor: pointer;
+    padding-left: 25px; /* Создаем отступ для изображения */
+}
+
+/* Закрытая версия с маркером */
+details summary::before {
+    content: "";
+    background: url("/static/img/marker.png") no-repeat center center;
+    background-size: 1em 1em; /* Подгоняем размер изображения */
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1em; /* Размер картинки */
+    height: 1em; /* Размер картинки */
+}
+
+/* Открытая версия с маркером */
+details[open] summary::before {
+    background: url("/static/img/marker_open.png") no-repeat center center;
+    background-size: 1em 1em; /* Подгоняем размер изображения */
+}
+
+details div {
+    padding: 5px;
+    margin-top: 5px;
+    color: #d2ccff;
+}
+
+/* Кнопка рассчитать снова */
+.btn-calc {
+    display: block;
+    margin: 30px auto 0;
+    padding: 11px 40px;
+    border-radius: 22px;
+    border: 1px solid #d880d1;
+    background: transparent;
+    color: #d2ccff;
+    font-size: 15px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s, color 0.3s;
+}
+.btn-calc:hover {
+    background: #d880d1;
+    color: #0e0d2c;
+}
+
+.tooltip-overlay {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.tooltip-box {
+  width: 80%;
+  max-width: 500px;
+  /*margin: 100px auto;*/
+  background: #2b2242;
+  color: #d2ccff;
+  padding: 15px;
+  border-radius: 12px;
+  border: 2px solid #d880d1;
+  font-size: 14px;
+  text-align: center;
+  /*position: relative;*/
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tooltip-box .close-tooltip {
+  display: inline-block;
+  background: #d880d1;
+  color: white;
+  padding: 2px 7.5px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 26px;
+  user-select: none;
+  line-height: 1;
+}

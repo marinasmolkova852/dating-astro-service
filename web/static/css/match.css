@@ -1,0 +1,120 @@
+ @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+html, body {
+    min-height: 100%;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background: linear-gradient(#001332, #321332);
+    color: #d2ccff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    margin: 0;
+}
+
+span.title {
+    font-size: 26px;
+    font-weight: 500;
+    color: #d880d1;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.match-card {
+    width: 94%;
+    max-width: 400px;
+    margin: 15px auto;
+    background-color: rgb(255 255 255 / 5%);
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    padding: 7px;
+    color: #d2ccff;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.match-new {
+    display: none;
+    position: absolute;
+    top: -20px;
+    right: 3px;
+    gap: 4px;
+    font-size: 14px;
+    color: #d880d1;
+}
+.match-new img {
+    width: 12px;
+    height: 12px;
+}
+
+.match-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 5px;
+}
+
+
+.match-zodiac img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.match-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.match-name {
+    font-size: 20px;
+    color: #c390ce;
+}
+
+.match-percent {
+    font-size: 24px;
+    color: #d880d1;
+    padding-right: 10px;
+}
+
+.match-goal {
+    text-align: center;
+    margin-top: 7px;
+    font-size: 16px;
+    padding: 8px 12px;
+    border: 1px solid #d880d1;
+    border-radius: 18px;
+    background: #c96bff30;
+    border: 2px solid #9455be40;
+    line-height: 1.3;
+    color: #d2ccff;
+}
+
+/* Адаптивность */
+@media (max-width: 360px) {
+    .match-zodiac img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .match-name {
+        font-size: 18px;
+    }
+
+    .match-percent {
+        font-size: 18px;
+    }
+
+    .match-goal {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+
+    .match-header {
+        flex-direction: row;
+        gap: 10px;
+    }
+}

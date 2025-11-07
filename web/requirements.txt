@@ -1,0 +1,11 @@
+Flask
+pymysql
+dbutils
+gunicorn
+requests
+Flask-Caching
+python-dotenv
+cryptography
+Pillow
+PyJWT
+boto3

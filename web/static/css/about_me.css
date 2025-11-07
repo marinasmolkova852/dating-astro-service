@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+body {
+    background: linear-gradient(#001332, #321332);
+    color: #d2ccff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.container {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 5px;
+  margin-bottom: 15px;
+  color: #d880d1;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  font-size: 18px;
+  border: 0;
+  display: flex;
+  align-items: center;
+  background: none;
+  box-shadow: none;
+  margin: 0;
+  padding: 5px;
+}
+
+ul li span {
+  font-size: 14px;  
+  margin-left: 0.5rem;
+  color: #d2ccff;
+  line-height: 20px;
+}
+
+.taglist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  background: #c96bff30;
+  color: #e0c8ec;
+  padding: 8px 16px;
+  border: 2px solid #9455be40;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.btn-delete {
+    display: block;
+    margin: 20px auto 0;
+    padding: 13px 40px;
+    border-radius: 22px;
+    border: 1px solid #d880d1;
+    /*border: none;*/
+    background: transparent;
+    color: #d2ccff;
+    font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.3s;
+}
+
+.btn-delete:hover {
+    color: #EBEBFF;
+    border: 1px solid #d880d1;
+    transform: scale(1.02);
+    background: linear-gradient(135deg, #8E4094, #D880D1);
+}

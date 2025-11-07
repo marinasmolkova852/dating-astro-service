@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(#001332, #321332);
+    color: #d2ccff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 10px;
+}
+
+.match-card {
+    max-width: 400px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.zodiac-icon {
+    text-align: center;
+}
+
+.zodiac-sign {
+    font-size: 28px;
+    font-weight: 700;
+    color: #f2d0ff;
+}
+
+.compatibility {
+    font-size: 18px;
+    margin: 8px 0;
+}
+
+.compatibility strong {
+    color: #d880d1;
+/* #66ffe0 */
+}
+
+.relation-type{
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.section {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 15px;
+    transition: background 0.3s;
+}
+
+.section:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.section h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #d880d1;
+}
+
+.section p {
+    font-size: 14px;
+    margin: 0;
+    color: #e8e8e8;
+}
+
+.goal {
+    font-size: 14px;
+    display: inline-block;
+    background-color: #8a55ff;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 20px;
+    margin-top: 5px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.location {
+    margin: 10px 0;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.tags{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px 3px;
+}
+
+.tag{
+    font-size: 14px;
+    padding: 8px 15px;
+    border: 2px solid #9455be40; 
+    background:#c96bff30;
+    border-radius: 20px;
+    color: #d2ccff;
+}
+
+.question {
+    border: 1px solid #d880d17d;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    padding: 0 5.5px;
+    font-weight: 500;
+    /* line-height: 5px; */
+    color: #d880d17d;
+    text-align: center;
+    vertical-align: top;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+}
+
+.question:hover {
+    background: #d880d1;
+    color: #0e0d2c;
+}
+
+details {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+details summary {
+    font-weight: 500;
+    font-size: 16px;
+    outline: none;
+    list-style: none;
+    position: relative;
+    cursor: pointer;
+    padding-left: 25px;
+    display: inline-block;
+    text-align: left;
+}
+
+/* Фиксируем ширину для стрелки */
+details summary::before {
+    content: "";
+    background: url("/static/img/marker.png") no-repeat center center;
+    background-size: 1em 1em;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5em; /* Фиксированная ширина */
+    height: 1.5em;
+    transition: background 0.2s ease; /* Плавное изменение фона */
+}
+
+/* При открытии меняем только фон, не трогая размеры и позицию */
+details[open] summary::before {
+    background: url("/static/img/marker_open.png") no-repeat center center;
+    background-size: 1em 1em;
+    /* Не меняем ширину/высоту/позицию */
+}
+
+.tooltip-overlay {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.tooltip-box {
+    width: 80%;
+    max-width: 500px;
+    /*margin: 100px auto;*/
+    background: #2b2242;
+    color: #d2ccff;
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid #d880d1;
+    font-size: 14px;
+    text-align: center;
+    /*position: relative;*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.tooltip-box .close-tooltip {
+    display: inline-block;
+    background: #d880d1;
+    color: white;
+    padding: 2px 7.5px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 26px;
+    user-select: none;
+    line-height: 1;
+}

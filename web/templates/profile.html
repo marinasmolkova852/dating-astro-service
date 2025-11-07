@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="=ie=edge">
+    <title>Astro Love</title>
+    <link rel="stylesheet" href="/static/css/profile.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
+    
+</head>
+<body>
+    {% if form %}
+        <div id="prof1"style="margin-bottom:40px;">
+            {% if image %}
+                <div id="profile_photo"><img id="prof-photo" src="{{ image }}"/></div>
+            {% else %}
+                <div class="add-photo" id="addPhotoBtn">
+                    <span class="plus">+</span>
+                    <span class="text">Добавить фото</span>
+                </div>
+            {% endif %}
+            <p></p>
+            <div class="name">
+                <img src="/static/img/match_currency.png" id="pr_style" style="width:5%; top:0px;"/> {{ form.name }} <img src="/static/img/match_currency.png" id="pr_style" style="width:5%; top:0px;"/>
+            </div>
+            <div class="tags">
+                <div class="tag" style="display:flex; align-items:center; gap:5px;"><img src="/static/img/{{ gender_path }}" style="width:16px;" /><span>{{ form.sex }}</span></div>
+                <div class="tag" style="display:flex; align-items:center; gap:5px;"><img src="/static/img/signs/{{ sign_path }}" style="width:22px;" /><span>{{ form.sign }}</span></div>
+                <div class="tag" style="display:flex; align-items:center; gap:5px;"><img src="/static/img/cake.png" style="width:20px;" /><span>{{ age }}</span></div>
+
+                <div class="tag" style="display:flex; align-items:center; gap:5px;"><img src="/static/img/{{ social.link }}" style="width:20px;"><span>{{ social.name }}</span></div>
+                <div class="tag" style="display:flex; align-items:center; gap:5px;"><img src="/static/img/location.png" style="width:18px;"><span>{{ form.location }}</span></div>
+
+                 <div class="tag" style="display:flex; align-items:center; gap:5px;"><img src="/static/img/target.png" style="width:20px;"><span>{{ form.searching }}</span></div>
+            </div>
+    	    <div id="profile-actions">
+                <div class="profile-action" onclick="window.location.href='/about_me'">
+                    <img src="/static/img/icons_profile.png" alt="Личная информация" />
+                    <span>Личная информация</span>
+                </div>
+                <div class="profile-action" onclick="window.location.href='/my_tariff'">
+                    <img src="/static/img/coshel.png" width="30px" alt="Тариф" />
+                    <span>Мой тариф</span>
+                </div>
+                {% if form.state == "active" %}
+                    <div id="hide_form" class="profile-action" >
+                        <img src="/static/img/hide.png" alt="Скрыть анкету" />
+                        <span>Скрыть анкету</span>
+                    </div>
+                {% elif form.state == "hide" %}
+                    <div id="show_form" class="profile-action">
+                        <img src="/static/img/view.png" alt="Показать анкету" />
+                        <span>Показать анкету</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <h2>Загрузка фото</h2>
+                <p>Размер фотографии не должен быть больше 5 МБ</p>
+                <button id="chooseFileBtn">Выбрать фото</button>
+                <input type="file" id="fileInput" accept="image/jpeg, image/png" style="display:none">
+            </div>
+        </div>
+    {% else %}
+        <div id="prof1"style="margin-bottom:40px;">
+            <div id="profile_photo"><img id="prof-photo" src="/static/img/sky_grass.png"/></div>
+            <p></p>
+            <div class="name">
+                <img src="/static/img/match_currency.png" id="pr_style" style="width:5%; top:0px;"/> Гость <img src="/static/img/match_currency.png" id="pr_style" style="width:5%; top:0px;"/>
+            </div>
+            <div id="profile-actions">
+                <div class="profile-action" onclick="window.location.href='/my_tariff'">
+                    <img src="/static/img/coshel.png" width="30px" alt="Тариф" />
+                    <span>Мой тариф</span>
+                </div>
+                <div id="fill_form" class="profile-action" onclick="window.location.href='/form'">
+                    <img src="/static/img/fill_form.png" alt="Заполнить анкету" />
+                    <span>Заполнить анкету</span>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <footer>
+        <div class="footer-container">
+            <div id="profile" class="footer-item" style="margin-left:8px"><div class="footer-active"><img src="/static/img/icon_profile.png" alt="Профиль" /><span>Профиль</span></div></div>
+            <div id="love_in_me" class="footer-item"><img src="/static/img/icon_love.png" alt="Любовь" /></div>
+            <div id="match" class="footer-item"><img src="/static/img/icon_match.png" alt="Мэтчи" /></div>
+            <div id="speedometr" class="footer-item"><img src="/static/img/icon_speedometr.png" alt="Спидометр" /></div>
+            <div id="payment" class="footer-item"><img src="/static/img/icon_tarif.png" alt="Тарифы" /></div>
+        </div>
+    </footer>
+    <!--<script src="https://cdn.jsdelivr.net/npm/eruda"></script>-->
+    <!--<script>eruda.init();</script>-->
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+    <script src="/static/js/menu_control.js?v={{ timestamp }}"></script>
+    <script src="/static/js/profile_control.js?v={{ timestamp }}"></script>
+</body>
+</html>

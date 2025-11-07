@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="=ie=edge">
+        <title>Astro Love</title>
+        <link rel="stylesheet" href="/static/css/footer.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+            html, body {
+                background: linear-gradient(to bottom, #001332, #321332);
+                color: #d2ccff;
+                font-family: 'Open Sans', sans-serif;
+                font-size: 14px;
+                display: flex;
+                font-weight: 500;
+                flex-direction: column;
+                min-height: 100vh;
+                overflow-x: hidden;
+                margin: 0;
+            }
+            .container{
+                max-width: 400px;
+                margin: auto;
+                margin-bottom: 60px;
+                text-align: center;
+            }
+
+            .container h2{
+                color:#d880d1;
+                margin-top: 0;
+            }
+            .chakra-section {
+                position: relative;
+                max-width: 550px;
+                padding: 5px;
+                margin-left: 8px;
+            }
+            .person_chakra {
+                position: absolute;
+                top: 37px; /* Настройте это значение под свое изображение */
+                left: 69px;
+                width: 500px;
+                opacity: 0.15;
+                z-index: 0;
+                pointer-events: none; /* Чтобы изображение не мешало кликам */
+            }
+            .person_chakra img {
+                width: 100%;
+                display: block;
+            }
+            .chakra-card {
+                display: flex;
+                width: 320px;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 15px;
+                padding: 10px 15px;
+                border-radius: 12px;
+                background: rgba(255, 255, 255, 0.05);
+                border-bottom: 2px solid;
+                position: relative; /* Чтобы иконка внутри позиционировалась нормально */
+                line-height: 1.3;
+                /* Чтобы иконки были поверх фонового изображения */
+            }
+            .chakra-info {
+                display: flex;
+                flex-direction: column;
+            }
+            .chakra-label {
+                font-size: 16px;
+                text-align: left;
+            }
+            .chakra-value {
+                font-size: 18px;
+                text-align: left;
+                font-weight: 600;
+            }
+            .chakra-icon {
+                width: 40px;
+                height: 40px;
+                flex-shrink: 0;
+            }
+            /* Цвета чакр */
+            .sahasrara {
+                border-color: #E67AFF;
+                color: #E67AFF;
+            }
+            .ajna {
+                border-color: #7D7AFF;
+                color: #7D7AFF;
+            }
+            .vishudha {
+                border-color: #4FC3F7;
+                color: #4FC3F7;
+            }
+            .anahata {
+                border-color: #66BB6A;
+                color: #66BB6A;
+            }
+            .manipura {
+                border-color: #FFCA28;
+                color: #FFCA28;
+            }
+            .svadhisthana {
+                border-color: #FF8A65;
+                color: #FF8A65;
+            }
+            .muladhara {
+                border-color: #EF5350;
+                color: #EF5350;
+            }
+
+            .question {
+                border: 1px solid #d880d17d;
+                border-radius: 50%;
+                width: 18px;
+                height: 18px;
+                font-size: 12px;
+                padding: 0 5.5px;
+                font-weight: 500;
+                /* line-height: 5px; */
+                color: #d880d17d;
+                text-align: center;
+                vertical-align: top;
+                cursor: pointer;
+                user-select: none;
+                text-decoration: none;
+            }
+
+            .question:hover {
+                background: #d880d1;
+                color: #0e0d2c;
+            }
+
+            .heart-block {
+                position: relative;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .heart {
+                width: 300px; /* или нужный вам размер */
+                height: auto;
+            }
+
+            .level {
+                font-size: 50px;
+                position: absolute;
+                transform: translateY(15px);
+                color:#d880d1;
+            }
+
+            /* Выпадающий блок "История операций" */
+            details {
+                text-align: left;
+                background: rgba(255, 255, 255, 0.05);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                border-radius: 12px;
+                padding: 15px;
+                margin: 12px;
+                color: #d880d1;
+                font-size: 14px;
+                cursor: pointer;
+            }
+
+            details summary {
+                font-weight: 600;
+                font-size: 16px;
+                outline: none;
+                list-style: none;
+                position: relative;
+                padding-left: 25px;
+                cursor: pointer;
+            }
+
+            /* Закрытая версия с маркером */
+            details summary::before {
+                content: "";
+                background: url("/static/img/marker.png") no-repeat center center;
+                background-size: 1em 1em;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 1em;
+                height: 1em;
+            }
+
+            /* Открытая версия с маркером */
+            details[open] summary::before {
+                background: url("/static/img/marker_open.png") no-repeat center center;
+                background-size: 1em 1em;
+            }
+
+            details div {
+                font-size: 14px;
+                padding: 5px;
+                margin-top: 5px;
+                color: #d2ccff;
+            }
+
+            .count-love {
+                display: block;
+                margin: 30px auto 0;
+                padding: 13px 40px;
+                border-radius: 22px;
+                border: 1px solid #d880d1;
+                /*border: none;*/
+                background: transparent;
+                color: #d2ccff;
+                font-size: 16px;
+                cursor: pointer;
+                user-select: none;
+                transition: 0.3s;
+            }
+
+            .count-love:hover {
+                color: #EBEBFF;
+                border: 1px solid #d880d1;
+                transform: scale(1.02);
+                background: linear-gradient(135deg, #8E4094, #D880D1);
+            }
+
+            .tooltip-overlay {
+                display: none;
+                position: fixed;
+                z-index: 9999;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                backdrop-filter: blur(5px);
+                background-color: rgba(0, 0, 0, 0.6);
+            }
+
+            .tooltip-box {
+                width: 80%;
+                max-width: 500px;
+                /*margin: 100px auto;*/
+                background: #2b2242;
+                color: #d2ccff;
+                padding: 15px;
+                border-radius: 12px;
+                border: 2px solid #d880d1;
+                font-size: 14px;
+                text-align: center;
+                /*position: relative;*/
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .tooltip-box .close-tooltip {
+                display: inline-block;
+                background: #d880d1;
+                color: white;
+                padding: 2px 7.5px;
+                border-radius: 50%;
+                cursor: pointer;
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                font-size: 26px;
+                user-select: none;
+                line-height: 1;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="heart-block">
+                <img class="heart" src="/static/img/icon_love_neon.png" >
+                <span class="level">{{ how_much_love }}</span>
+            </div>
+
+            <h2>Сколько в тебе любви? <a href="#how_much_love" class="question">?</a></h2>
+
+            <details>
+                <summary>
+                    <strong>Описание %</strong>
+                </summary>
+                <p></p>
+                <div>{{ love_description | replace('\n', '<br>') | safe }}</span>
+            </details>
+
+
+            <div class="chakra-section">
+                <div class="person_chakra">
+                    <img src="/static/img/person_chakra1.png" alt="person chakras" />
+                </div>
+                <div class="chakra-card sahasrara">
+                    <div class="chakra-info">
+                        <span class="chakra-label">Сахасрара – Космос</span>
+                        <span class="chakra-value">{{ chakras['Сахасрара'] }}%</span>
+                    </div>
+                    <svg class="chakra-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="9" stroke-width="2" />
+                        <path d="M12 6v6l4 2" stroke-width="2" />
+                    </svg>
+                </div>
+                <div class="chakra-card ajna">
+                    <div class="chakra-info">
+                        <span class="chakra-label">Аджна – Разум</span>
+                        <span class="chakra-value">{{ chakras['Аджна'] }}%</span>
+                    </div>
+                    <svg class="chakra-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="9" stroke-width="2" />
+                        <circle cx="12" cy="12" r="3" stroke-width="2" />
+                    </svg>
+                </div>
+                <div class="chakra-card vishudha">
+                    <div class="chakra-info">
+                        <span class="chakra-label">Вишудха – Реализация</span>
+                        <span class="chakra-value">{{ chakras['Вишудха'] }}%</span>
+                    </div>
+                    <svg class="chakra-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <polygon points="12,2 22,9 18,22 6,22 2,9" stroke-width="2" />
+                    </svg>
+                </div>
+                <div class="chakra-card anahata">
+                    <div class="chakra-info">
+                        <span class="chakra-label">Анахата – Чувства</span>
+                        <span class="chakra-value">{{ chakras['Анахата'] }}%</span>
+                    </div>
+                    <svg class="chakra-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="9" stroke-width="2" />
+                        <path d="M8 12h8M12 8v8" stroke-width="2" />
+                    </svg>
+                </div>
+                <div class="chakra-card manipura">
+                    <div class="chakra-info">
+                        <span class="chakra-label">Манипура – Воля</span>
+                        <span class="chakra-value">{{ chakras['Манипура'] }}%</span>
+                    </div>
+                    <svg class="chakra-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <polygon points="12,2 20,20 4,20" stroke-width="2" />
+                    </svg>
+                </div>
+                <div class="chakra-card svadhisthana">
+                    <div class="chakra-info">
+                        <span class="chakra-label">Свадхистана – Семья</span>
+                        <span class="chakra-value">{{ chakras['Свадхистана'] }}%</span>
+                    </div>
+                    <svg class="chakra-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="9" stroke-width="2" />
+                        <path d="M12 7a5 5 0 0 1 0 10a5 5 0 0 1 0-10z" stroke-width="2" />
+                    </svg>
+                </div>
+                <div class="chakra-card muladhara">
+                    <div class="chakra-info">
+                        <span class="chakra-label">Муладхара – Выживание</span>
+                        <span class="chakra-value">{{ chakras['Муладхара'] }}%</span>
+                    </div>
+                    <svg class="chakra-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="4" y="4" width="16" height="16" stroke-width="2" />
+                    </svg>
+                </div>
+            </div>
+            <h2>Описание чакр <a href="#chakra_desc" class="question">?</a></h2>
+            
+            <details>
+                <summary>
+                    <strong>Сахасрара</strong>
+                    <a href="#sahasrara" class="question">?</a>
+                    <img src="/static/img/chacra_1.png" width="35px" style="position: absolute; right: 10px; top:-7px;">
+                </summary>
+                <div>
+                    {{ chakras_description['Сахасрара'] | replace('\n', '<br>') | safe }}
+                </div>
+            </details>
+
+            <details>
+                <summary>
+                    <strong>Аджна</strong>
+                    <a href="#ajna" class="question">?</a>
+                    <img src="/static/img/chacra_2.png" width="35px" style="position: absolute; right: 10px; top:-7px;">
+                </summary>
+           
+                <div>
+                    {{ chakras_description['Аджна'] | replace('\n', '<br>') | safe }}
+                </div>
+            </details>
+            
+            <details>
+                <summary>
+                    <strong>Вишудха</strong>
+                    <a href="#vishudha" class="question">?</a>
+                    <img src="/static/img/chacra_3.png" width="35px" style="position: absolute; right: 10px; top:-7px;">
+                </summary>
+                <div>
+                    {{ chakras_description['Вишудха'] | replace('\n', '<br>') | safe }}
+                </div>
+            </details>
+            
+            <details>
+                <summary>
+                    <strong>Анахата</strong>
+                    <a href="#anahata" class="question">?</a>
+                    <img src="/static/img/chacra_4.png" width="35px" style="position: absolute; right: 10px; top:-7px;">
+                </summary>
+                <div>
+                    {{ chakras_description['Анахата'] | replace('\n', '<br>') | safe }}
+                </div>
+            </details>
+
+            <details>
+                <summary>
+                    <strong>Манипура</strong>
+                    <a href="#manipura" class="question">?</a>
+                    <img src="/static/img/chacra_5.png" width="35px" style="position: absolute; right: 10px; top:-7px;">
+                </summary>
+
+                <div>
+                    {{ chakras_description['Манипура'] | replace('\n', '<br>') | safe }}
+                </div>
+            </details>
+
+            <details>
+                <summary>
+                    <strong>Свадхистана</strong>
+                    <a href="#svadhisthana" class="question">?</a>
+                    <img src="/static/img/chacra_6.png" width="35px" style="position: absolute; right: 10px; top:-7px;">
+                </summary>
+                <div>
+                    {{ chakras_description['Свадхистана'] | replace('\n', '<br>') | safe }}
+                </div>
+            </details>
+
+            <details>
+                <summary>
+                    <strong>Муладхара</strong>
+                    <a href="#muladhara" class="question">?</a>
+                    <img src="/static/img/chacra_7.png" width="35px" style="position: absolute; right: 10px; top:-7px;">
+                </summary>
+                <div>
+                    {{ chakras_description['Муладхара'] | replace('\n', '<br>') | safe }}
+                </div>
+            </details>
+            <div class="inn-yann" style="position: relative;margin-bottom: 5px;">
+                <img src="/static/img/icon_in_yann_neon.png" style="position:relative;  max-width:300px; margin:auto; ">
+                <div style="font-size:30px; color:#d880d1; width:85%; bottom: 30px; display:block; text-align:right; position:absolute;">{{ yann }}</div>
+                <div style="font-size:30px; color:#d880d1; top:20px; left:15px; position:absolute;">{{ inn }}</div>
+            </div>
+
+            <h2>Описание Инь и Ян <a href="#inn_yann" class="question">?</a></h2>
+           
+            <details>
+                <summary>
+                    <strong>Баланс Инь Ян</strong>
+                </summary>
+                <div>
+                    Если у вас больше «Инь» или «Ян», это не говорит о том, что вы больше мужчина или
+                    женщина. Или если у вас больше «Ян» нужно качать «Инь» женскую энергию.<br>
+                    Здесь все дело в БАЛАНСЕ этих энергий.
+                    Поэтому стремитесь к балансу данных энергий.<br>
+                    А в жизни, в совместимости к вам могут притягиваться люди с противоположными
+                    вашим энергиями. Например, у вас «Ян» высокий и к вам притягиваются люди с
+                    высоким «Инь». Вся наша жизнь стремится в балансу ☯️<br>
+                    <p></p>
+                    ☯️ Инь — женская энергия<br>
+                    Инь — это пассивная, принимающая, мягкая энергия. Она ассоциируется с:<br>
+                    🔸 Женским началом (интуиция, забота, гибкость)<br>
+                    🔸 Тьмой, луной, водой (глубина, эмоции, тайна)<br>
+                    🔸 Покоем, расслаблением, холодом<br>
+                    🔸 Материей, физическим телом<br>
+                    Люди с высоким «Инь» обладают хорошей интуицией, часто все предсказывают,видят
+                    вещие сны<br>
+                    <p></p>
+                    ☯️ Ян — мужская энергия<br>
+                    Ян — это активная, дающая, динамичная энергия. Она связана с:<br>
+                    🔹 Мужским началом (логика, действие, сила)<br>
+                    🔹 Светом, солнцем, огнём (страсть, воля, активность)<br>
+                    🔹 Движением, теплом, напряжением<br>
+                    🔹 Духом, энергией, мыслями<br>
+                    Люди с высоким «Ян» умеют действовать, четко и быстро решать проблемы, целеустремленные
+                </div>
+            </details>
+            
+            <details>
+                <summary>
+                    <strong>Инь</strong>
+                </summary>
+                
+                <div>
+                    {{ inn_description | replace('\n', '<br>') | safe }}
+                </div>
+            </details>
+                
+            <details>
+                <summary><strong>Ян</strong></summary>
+                <p></p>
+                <div>
+                {{ yann_description | replace('\n', '<br>') | safe }}
+                </div>
+            </details>
+               
+            <button class="count-love" type="button" onclick="window.location.href='/love'">Рассчитать снова</button>
+        </div>
+        <!-- Всплывающая подсказка -->
+        <div class="tooltip-overlay" id="tooltip">
+            <div class="tooltip-box">
+                <div class="close-tooltip" onclick="hide_window()" aria-label="Закрыть" role="button" tabindex="0">&times;</div>
+                <div id="tooltip-content" style="margin: 15px 5px"></div>
+            </div>
+        </div>
+        <footer>
+            <div class="footer-container">
+                <div id="profile" class="footer-item"><img src="/static/img/icon_profile.png" alt="Профиль" /></div>
+                <div id="love_in_me" class="footer-item"><div class="footer-active"><img src="/static/img/icon_love.png" alt="Любовь" /><span>Любовь</span></div></div>
+                <div id="match" class="footer-item"><img src="/static/img/icon_match.png" alt="Мэтчи" /></div>
+                <div id="speedometr" class="footer-item"><img src="/static/img/icon_speedometr.png" alt="Спидометр" /></div>
+                <div id="payment" class="footer-item"><img src="/static/img/icon_tarif.png" alt="Тарифы" /></div>
+            </div>
+        </footer>
+        <script>
+            const tooltips = {
+                "#how_much_love": "Этот процент отражает изначальный потенциал любви, заложенный в вас, и показывает, насколько легко вы дарите и принимаете это чувство!<br><br>Помните: любовь — это динамическая энергия, вы можете ее развивать!<br>Ваш максимум любви — ваша самая высокая чакра!<br><br>Есть 3 уровня любви:<br>• 1 уровень — любовь к себе<br>• 2 уровень — любовь к миру (люди, животные, все живые существа и т.д.)<br>• 3 уровень — любовь ко Вселенной (безусловная любовь к богу/вселенной/создателю и т.д.)<br>Чем выше процент вашей любви — тем легче развивать любовь на всех уровнях!",
+                "#chakra_desc": "Чакры — это энергетические центры в теле человека, отвечающие за физическое, эмоциональное и духовное благополучие. Каждая чакра связана с определёнными органами, эмоциями и аспектами жизни. Именно по чакрам рассчитывается уровень вашей любви",
+                "#sahasrara": "Высшая связь с космосом<br>Показывает есть ли у вас связь с чем-то большим (Бог, Вселенная). Насколько вы чувствуете смысл жизни, есть ли внутренний свет. Единственная чакра, которая находится не в теле, а над головой!",
+                "#ajna": " Связь с интуицией, ясновидением, мудростью, внутренним видением<br> Показывает развита ли у вас интуиция, видите ли вы глубже поверхностные события, есть ли ясность мышления. Насколько вам легко дается учеба, образование и саморазвитие. Если чакра слишком высокая, то вы можете страдать по фразе «горе от ума», потому что слишком много думаете! И смотрите на уровень своей Муладхары, если Аджна высокая, а Муладхара низкая, то не хватает сил на реализацию задуманного",
+                "#vishudha": "Горловая чакра, находится в зоне горла<br>Показывает насколько вы честны с собой и другими. Насколько вам легко общаться, разговаривать, говорить, презентовать себя и свои мысли. И какой потенциал самовыражения заложен. (Это не только про слова, это может быть музыка, блог и другое, то, через что можно самовыражаться). Людям с высокой Вишудхой обязательно нужно «передавать» свои знания. К вам могут притягиваться люди, которые не умеют разговаривать (с низкой Вишудхой). У людей с низкой Вишудхой часто болит горло",
+                "#anahata": "Связь с любовью, состраданием, гармонией, принятием себя и других<br>Показывает вашу способность любить, умеете ли вы прощать и принимать людей. Насколько вы эмоциональны, открыты и сострадательны. Именно за Анахатой находится душа. Люди с высокой Анахатой часто бывают чересчур эмоциональны, а если не реализуют потенциал,то становятся истероидами. Люди с низкой Анахатой часто не догоняют по эмоциональному интеллекту",
+                "#manipura": "Чакра силы, власти<br>Показывает Вашу уверенность в себе, насколько вы способны достигать целей, как вы умеете зарабатывать деньги и как вы контролируете свою жизнь.",
+                "#svadhisthana": "Сакральная чакра продолжения рода, удовольствий, центр жизненной силы<br>Показывает ваше отношение к удовольствиям, сексу, творчеству. Насколько вы умеетерадоваться жизни. Есть ли блоки на чувственность и проявление слабостей",
+                "#muladhara": "Корневая чакра<br>Показывает насколько вы чувствуете безопасность в этом мире. Есть ли у вас фундаментальная опора, деньги, дом, здоровье. Как вы справляетесь со страхами истрессом. Если Муладхара у человека высокая, то не просто так говорят: «шило в заднице».",
+                "#inn_yann": "Инь и Ян ☯️ — две противоположные, но взаимодополняющие силы.<br> Они отражают баланс и гармонию во всем"
+            };
+        
+            // Все ссылки с классом question
+            document.querySelectorAll('a.question').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const id = this.getAttribute('href');
+                    const content = tooltips[id] || "Информация отсутствует";
+                    document.getElementById("tooltip-content").innerHTML = content;
+                    document.getElementById("tooltip").style.display = 'block';
+                });
+            });
+        
+            function hide_window() {
+                document.getElementById("tooltip").style.display = 'none';
+            }
+        </script>
+        <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+        <script src="/static/js/menu_control.js?v=1.0.1"></script>
+    </body>
+</html>

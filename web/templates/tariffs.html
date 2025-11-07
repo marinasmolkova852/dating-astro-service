@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="=ie=edge">
+    <title>Astro Love</title>
+    <link rel="stylesheet" href="/static/css/footer.css">
+    <link rel="stylesheet" href="/static/css/tariffs.css">
+</head>
+<body> 
+    <div class="tariffs-info">
+        <img src="/static/img/icon_tarif_neon.png"style="width:40%; display:flex;justify-content: center; margin:5px auto;" />
+        <span class="title">ТАРИФЫ</span>
+
+        <div class="tariff-card">
+            <div class="tariff-title">
+                <img class="tariff-img" src="./static/img/icons_intro.png" />
+                <span>ЗНАКОМСТВО</span>
+            </div>
+            <ul>
+                <li><span style="font-size: 18px;">🎁</span> Подарок за первое заполнение анкеты:</li>
+                <li><span style="font-size: 18px;">💕</span> 2 мэтча</li>
+                <li><span style="font-size: 18px;">❤️‍🔥</span> 2 прокрутки «Сколько в тебе любви»</li>
+                <li><span style="font-size: 18px;">🚀</span> 2 прокрутки «Спидометра совместимости»</li>
+                <li><span style="font-size: 18px;">💭</span> Астро-чат: 10 запросов в день</li>
+                <li><span style="font-size: 18px;">📅</span> Срок действия: 30 дней</li>
+            </ul>
+            <div class="button pay" data-tariff="ЗНАКОМСТВО" data-price="0" data-payload="tariff_gift">Бесплатно</div>
+        </div>
+        <div class="tariff-card">
+            <div class="tariff-title">
+                <img class="tariff-img" src="./static/img/icons_upgrade.png" />
+                <span>КРУЧУ ВЕРЧУ</span>
+            </div>
+            <ul>
+                <li><span style="font-size: 18px;">🎁</span> Акция действует при покупке до 30 ноября:</li>
+                <li><span style="font-size: 18px;">💕</span> Безлимит на мэтчи</li>
+                <li><span style="font-size: 18px;">❤️‍🔥</span> Безлимит на прокрутки «Сколько в тебе любви»</li>
+                <li><span style="font-size: 18px;">🚀</span> Безлимит на прокрутки «Спидометра совместимости»</li>
+                <li><span style="font-size: 18px;">💭</span> Астро-чат: неограниченный доступ</li>
+                <li><span style="font-size: 18px;">📅</span> Срок действия: 365 дней</li>
+            </ul>
+            <div class="button pay" data-tariff="КРУЧУ ВЕРЧУ" data-price="2999" data-payload="tariff_spinner">2999 ₽</div>
+        </div>
+        <div class="tariff-card">
+            <div class="tariff-title">
+                <img class="tariff-img" src="./static/img/icons_start.png" />
+                <span>СТАРТ</span>
+            </div>
+            <ul>
+                <li><span style="font-size: 18px;">💕</span> 5 мэтчей</li>
+                <li><span style="font-size: 18px;">❤️‍🔥</span> 5 прокруток «Сколько в тебе любви»</li>
+                <li><span style="font-size: 18px;">🚀</span> 5 прокруток «Спидометра совместимости»</li>
+                <li><span style="font-size: 18px;">⚡</span> Подбор мэтчей в порядке очереди</li>
+                <li><span style="font-size: 18px;">🔮</span> Совместимость по астрологии</li>
+                <li><span style="font-size: 18px;">💭</span> Астро-чат: неограниченный доступ</li>
+                <li><span style="font-size: 18px;">📅</span> Срок действия: 30 дней</li>
+            </ul>
+            <div class="button pay" data-tariff="СТАРТ" data-price="599" data-payload="tariff_start">599 ₽</div>
+        </div>
+
+        <div class="tariff-card">
+            <div class="tariff-title">
+                <img class="tariff-img" src="/static/img/icons_base.png" />
+                <span>БАЗОВЫЙ</span>
+            </div>
+            <ul>
+                <li><span style="font-size: 18px;">💕</span> 10 мэтчей</li>
+                <li><span style="font-size: 18px;">❤️‍🔥</span> 10 прокруток «Сколько в тебе любви»</li>
+                <li><span style="font-size: 18px;">🚀</span> 10 прокруток «Спидометра совместимости»</li>
+                <li><span style="font-size: 18px;">⚡</span> Подбор мэтчей в порядке очереди</li>
+                <li><span style="font-size: 18px;">🔮</span> Совместимость по астрологии</li>
+                <li><span style="font-size: 18px;">💭</span> Астро-чат: неограниченный доступ</li>
+                <li><span style="font-size: 18px;">📅</span> Срок действия: 30 дней</li>
+            </ul>
+            <div class="button pay" data-tariff="БАЗОВЫЙ" data-price="999" data-payload="tariff_base">999 ₽</div>
+        </div>
+
+        <div class="tariff-card">
+            <div class="tariff-title">
+                <img class="tariff-img" src="/static/img/icons_vip.png" />
+                <span>VIP</span>
+            </div>
+            <ul>
+                <li><span style="font-size: 18px;">💕</span> Безлимит на мэтчи</li>
+                <li><span style="font-size: 18px;">❤️‍🔥</span> Безлимит на прокрутки «Сколько в тебе любви»</li>
+                <li><span style="font-size: 18px;">🚀</span> Безлимит на прокрутки «Спидометра совместимости»</li>
+                <li><span style="font-size: 18px;">⚡</span> Подбор мэтчей вне очереди</li>
+                <li><span style="font-size: 18px;">🔮</span> Совместимость по всем программам</li>
+                <li><span style="font-size: 18px;">💭</span> Астро-чат: неограниченный доступ</li>
+                <li><span style="font-size: 18px;">📅</span> Срок действия: 30 дней</li>
+            </ul>
+            <div class="button pay" data-tariff="VIP" data-price="2999" data-payload="tariff_vip">2999 ₽</div>
+        </div>
+
+        <div class="tariff-card">
+            <div class="tariff-title">
+                <img class="tariff-img" src="/static/img/icons_super_vip.png" />
+                <span>SUPER VIP</span>
+            </div>
+            <ul>
+                <li><span style="font-size: 18px;">💕</span> Безлимит на мэтчи</li>
+                <li><span style="font-size: 18px;">❤️‍🔥</span> Безлимит на прокрутки «Сколько в тебе любви»</li>
+                <li><span style="font-size: 18px;">🚀</span> Безлимит на прокрутки «Спидометра совместимости»</li>
+                <li><span style="font-size: 18px;">⚡</span> Подбор мэтчей вне очереди</li>
+                <li><span style="font-size: 18px;">🔮</span> Совместимость по всем программам</li>
+                <li><span style="font-size: 18px;">💭</span> Астро-чат: неограниченный доступ</li>
+                <li><span style="font-size: 18px;">📅</span> Срок действия: 365 дней</li>
+            </ul>
+            <div class="button pay" data-tariff="SUPER VIP" data-price="9999" data-payload="tariff_supervip">9999 ₽</div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div id="profile" class="footer-item"><img src="/static/img/icon_profile.png" alt="Профиль" /></div>
+            <div id="love_in_me" class="footer-item"><img src="/static/img/icon_love.png" alt="Любовь" /></div>
+            <div id="match" class="footer-item"><img src="/static/img/icon_match.png" alt="Мэтчи" /></div>
+            <div id="speedometr" class="footer-item"><img src="/static/img/icon_speedometr.png" alt="Спидометр" /></div>
+            <div id="payment" class="footer-item" style="margin-right:10px"><div class="footer-active"><img src="/static/img/icon_tarif.png" alt="Тарифы" /><span>Тарифы</span></div></div>
+        </div>
+    </footer>
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+    <script src="/static/js/menu_control.js?v=1.1.1"></script>
+    <script src="/static/js/tariffs_control.js?v=1.1.1"></script>
+</body>
+</html>

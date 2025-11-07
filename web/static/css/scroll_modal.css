@@ -1,0 +1,120 @@
+.modal-backdrop {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-backdrop.active {
+    display: flex;
+}
+
+.modal {
+    background: #412952;
+    border-radius: 16px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+    padding: 12px;
+    width: 85%;  
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+}
+
+.picker {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 5px 0;
+    position: relative;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.wheel {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-snap-type: y mandatory;
+    border-radius: 14px;
+    background: #ffffff0a;
+    font-weight: 400;
+    font-size: 16px;
+    color: #928cb0;
+    text-align: center;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+.wheel::-webkit-scrollbar { display: none; }
+
+.wheel div {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: center;
+    user-select: none;
+    transition: color 0.3s;
+}
+
+/* Плейсхолдеры будут невидимы */
+.wheel div.placeholder {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Выделяем выбранный элемент цветом */
+.wheel div.selected {
+    color: #e590ea;
+}
+
+.wheel-overlay {
+    position: absolute;
+    top: 50%;
+    width: 90%;
+    height: 50px;
+    margin-top: -25px;
+    border-top: 1px solid #ecb6ff;
+    border-bottom: 1px solid #ecb6ff;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.buttons button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    user-select: none;
+}
+
+.ok-btn {
+    background: #e590ea;
+    color: white;
+}
+.ok-btn:hover {
+    background: #c973ce;
+}
+.cancel-btn {
+    background: #8087ac;
+    color: white;
+}
+.cancel-btn:hover {
+    background: #767d9e;
+}
