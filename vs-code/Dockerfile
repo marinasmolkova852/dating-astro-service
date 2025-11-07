@@ -1,0 +1,4 @@
+FROM codercom/code-server:latest
+
+USER coder
+WORKDIR /home/coder/project

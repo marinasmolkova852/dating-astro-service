@@ -1,0 +1,3 @@
+Backing up database 'main_db' as user 'user_db'
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+

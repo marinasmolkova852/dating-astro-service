@@ -1,0 +1,151 @@
+services:
+  # ------------------- REVERSE PROXY -------------------
+  nginx-proxy:
+    image: jwilder/nginx-proxy:alpine
+    container_name: nginx-proxy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    labels:
+      - com.github.nginx-proxy.nginx
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - nginx_certs:/etc/nginx/certs:rw
+      - nginx_vhost:/etc/nginx/vhost.d
+      - nginx_html:/usr/share/nginx/html
+    networks:
+      - backend
+
+  # ------------------- SSL Companion -------------------
+  letsencrypt:
+    image: nginxproxy/acme-companion
+    container_name: letsencrypt
+    restart: always
+    depends_on:
+      - nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./acme:/etc/acme.sh
+      - nginx_certs:/etc/nginx/certs:rw
+      - nginx_vhost:/etc/nginx/vhost.d
+      - nginx_html:/usr/share/nginx/html
+
+    environment:
+      DEFAULT_EMAIL: ${EMAIL_LETSENCRYPT}
+    networks:
+      - backend
+  
+  # ------------------- Telegram Bot -------------------
+  bot:
+    build: ./bot
+    restart: always
+    depends_on:
+      - mysql
+    environment:
+      DB_HOST: mysql
+      DB_USER: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+      DB_NAME: ${MYSQL_DATABASE}
+      BOT_TOKEN: ${BOT_TOKEN}
+      PAYMENT_TOKEN: ${PAYMENT_TOKEN}
+      API_KEY: ${API_KEY}
+      AI_SERVICE_URL: ${AI_SERVICE_URL}
+    networks:
+      - backend
+  
+  # ------------------- Node.js AI Service -------------------
+  astro-service:
+    build:
+      context: ./astro_chat
+    restart: always
+    environment:
+      AUTH_TOKEN: ${AUTH_TOKEN}
+    ports:
+      - "3000:3000"
+    networks:
+      - backend
+  
+  # ------------------- Flask Web -------------------
+  web:
+    build: ./web
+    restart: always
+    environment:
+      DB_HOST: mysql
+      DB_USER: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+      DB_NAME: ${MYSQL_DATABASE}
+      SECRET_KEY: ${SECRET_KEY}
+      BOT_TOKEN: ${BOT_TOKEN}
+      PAYMENT_TOKEN: ${PAYMENT_TOKEN}
+      YANDEX_ACCESS_KEY: ${YANDEX_ACCESS_KEY}
+      YANDEX_SECRET_KEY: ${YANDEX_SECRET_KEY}
+      YANDEX_ENDPOINT_URL: ${YANDEX_ENDPOINT_URL}
+
+      # Метки для nginx-proxy
+      VIRTUAL_HOST: ${MAIN_HOST},${WWW_MAIN_HOST}
+      LETSENCRYPT_HOST: ${MAIN_HOST},${WWW_MAIN_HOST}
+      LETSENCRYPT_EMAIL: ${EMAIL_LETSENCRYPT}
+    volumes:
+      - ./web:/app
+    expose:
+      - "5000"
+    depends_on:
+      - mysql
+    networks:
+      - backend
+
+  # ------------------- MySQL -------------------
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql_data/dump.sql:/docker-entrypoint-initdb.d/dump.sql:ro
+    networks:
+      - backend
+
+  # ------------------- phpMyAdmin -------------------
+  phpmyadmin:
+    image: phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      VIRTUAL_HOST: ${PMA_VIRTUAL_HOST}
+      LETSENCRYPT_HOST: ${PMA_VIRTUAL_HOST}
+      LETSENCRYPT_EMAIL: ${EMAIL_LETSENCRYPT}
+    networks:
+      - backend
+
+  # ------------------- VS Code -------------------
+  vs-code:
+    build: ./vs-code
+    restart: always
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./:/home/coder/project
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      VIRTUAL_HOST: ${VSCODE_VIRTUAL_HOST}
+      LETSENCRYPT_HOST: ${VSCODE_VIRTUAL_HOST}
+      LETSENCRYPT_EMAIL: ${EMAIL_LETSENCRYPT}
+      PASSWORD: "${VS_PASSWORD}"
+      TZ: "Europe/Moscow"
+    networks:
+      - backend
+
+volumes:
+  mysql_data:
+  nginx_certs:
+  nginx_vhost:
+  nginx_html:
+
+networks:
+  backend:
